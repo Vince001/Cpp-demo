@@ -19,3 +19,7 @@
 *.exe
 *.out
 *.app
+
+# The temp file by other editors
+*~
+*out
