@@ -2,6 +2,6 @@
 
 incdir="/usr/include/c++/4.8"
 cppfile=main.cpp
-CC_FLAGS="-O2"
+CC_FLAGS="-O2 ""-Wno-unused-result"
 
 g++ -I $incdir $CC_FLAGS $cppfile

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 
 // haha, I can edit it here !!! reside github.com
 // modify in branch development
@@ -24,10 +25,19 @@ int main( int argc, char **argv )
 {
     int arr[8] = {5};
     std::cout << "Hello,world." << std::endl;
-    //system( "pause" );
+    // arr[7] = 
+    system( "man cmake" );   ///< linux without "pause" command like Windows
     for(int i=0; i<8; i++)
     {
         std::cout << arr[i] << std::endl;
     }
+    
+    // std::cin >> arr[6];   ///< wait for user confirm
 }
 
+// The brief template
+/**
+* @func void CardDetector::timerEvent(QTimerEvent* event)
+* @brief
+*
+* */
