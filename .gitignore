@@ -24,3 +24,6 @@
 *~
 *out
 *.db
+
+# local untracted file
+*~

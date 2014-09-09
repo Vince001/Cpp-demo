@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -8,15 +9,14 @@ using namespace std;
 // modify in branch development
 
 /**
- * @fn int main( int argc, char **argv )
  * @brief Sam card init
  * 
  * @param argc parameter counter
  * @param argv parameter valus array point
  *
- * @return -1 file open failed.
- * @return  0 execute OK.
- * @return  1 other error.
+ * @retval -1 file open failed.
+ * @retval  0 execute OK.
+ * @retval  1 other error.
  *
  * @see AdpuCommands_1.0.xls. Page: Demonstration
  *
@@ -40,6 +40,22 @@ using namespace std;
      return &b;
  }
  
+ void printwords()
+ {
+     char *w1 = "haha";
+     char *w2 = "heihei";
+     char *w3 = "hehe";
+     printf( "%s \n", w1);
+     //goto print3;
+     
+     printf( "%s \n", w3);
+     
+ print3:
+     printf( "run to here \n");
+     printf( "%s \n", w2);   
+     
+ }
+ 
 int main( int argc, char **argv )
 {
     int arr[8] = {5};
@@ -59,6 +75,13 @@ int main( int argc, char **argv )
         cout << "Not NULL." << endl;
     else
         cout << "NULL" << endl;
+        
+    unsigned long ulong = 0x348573;
+    unsigned char uchar[20] = {0x55,0x66,0x77};
+    string tmp;
+    //tmp << ulong;
+   // tmp << uchar;
+    cout << "string contact is " << tmp << endl;
     
     //file >> iTmp;
     //std::cout << "the extract is:" << iTmp << std::endl;
@@ -81,6 +104,8 @@ int main( int argc, char **argv )
     
     file.close();
     // std::cin >> arr[6];   ///< wait for user confirm
+    
+    printwords();
 }
 
 // The brief template
