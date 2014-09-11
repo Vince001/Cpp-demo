@@ -1,4 +1,4 @@
-git-demo
+Cpp-demo
 ========
 
-Vince's git app test
+Vince's C++ app test on git.
