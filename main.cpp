@@ -40,6 +40,8 @@ using namespace std;
      return &b;
  }
  
+ void Test_XXX();
+ 
  void printwords()
  {
      char *w1 = "haha";
