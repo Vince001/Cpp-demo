@@ -40,6 +40,7 @@ using namespace std;
      return &b;
  }
  
+ // test module
  void Test_XXX();
  
  void printwords()
