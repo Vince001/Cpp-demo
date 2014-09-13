@@ -108,6 +108,8 @@ int main( int argc, char **argv )
     // std::cin >> arr[6];   ///< wait for user confirm
     
     printwords();
+    
+    Test_XXX();
 }
 
 // The brief template
