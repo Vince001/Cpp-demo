@@ -40,6 +40,8 @@ using namespace std;
      return &b;
  }
  
+ // test git rebase
+ 
  // test module
  void Test_XXX();
  
