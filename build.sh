@@ -8,4 +8,6 @@ cppfile=main.cpp
 CC_FLAGS="-O2 ""-Wno-unused-result"
 
 echo g++ -I $incdir -I $incdir1 -I $incdir2 $CC_FLAGS $cppfile
-g++ -I $incdir -I $incdir1 -I $incdir2 $CC_FLAGS $cppfila
+g++ -I $incdir -I $incdir1 -I $incdir2 $CC_FLAGS $cppfile
+
+# test for rebase
