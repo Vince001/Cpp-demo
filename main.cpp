@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
+#include <unistd.h>
 
 using namespace std;
 
@@ -38,6 +39,40 @@ using namespace std;
  {
      static char b;
      return &b;
+ }
+ 
+ void flagRotate( unsigned int cnt )
+ {
+     for(unsigned int i=0; i < cnt; i++ )
+     {
+         printf("\r ---------> |");
+         fflush(stdout);
+         sleep( 1 );
+         printf("\r ---------> /");
+         fflush(stdout);
+         sleep( 1 );
+         printf("\r ---------> -");
+         fflush(stdout);
+         sleep( 1 );
+         printf("\r ---------> \\");
+         fflush(stdout);
+         sleep( 1 );         
+     }
+     printf("\n");
+ }
+ 
+ void progressbar( void )
+ {
+ 	int i;
+	for (i=0; i<20; i++)
+	{
+	    printf("\r");
+		printf("Progress     [%d%%]", (i+1)*5);
+		//printf("\r");
+		fflush(stdout);
+		sleep(1);
+	}
+	printf("\n");
  }
  
  // test git rebase
@@ -112,7 +147,11 @@ int main( int argc, char **argv )
     
     printwords();
     
-    Test_XXX();
+    //Test_XXX();
+    
+    //progressbar();
+    
+    flagRotate( 4 );
 }
 
 // The brief template
