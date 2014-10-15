@@ -16,10 +16,13 @@ void testGotoLable();
 void testFileOpt();
 int PrintMenu();
 int TestArray();
+void TestINT();
 
 
 int assignArrayParam( char name[5] );
 void progressPercent( unsigned int i );
+void testParameterINT( int num );
+void testParameterUINT( unsigned int num );
 
 /**
  * @brief C++ details test.
@@ -65,6 +68,9 @@ int main( int argc, char **argv )
             case 5:
             	TestArray();
             break;
+            case 6:
+            	TestINT();
+            break;
             default:
             break;
         }
@@ -73,6 +79,54 @@ int main( int argc, char **argv )
     return 0;
 }
 
+int PrintMenu()
+{
+	unsigned int item = 0;
+
+	cout << endl;
+	cout << endl;
+	cout << "=====================================================>> " << endl;
+	cout << "Pls select your option: " << endl;
+	cout << " 1,test goto lable."      << endl;
+	cout << " 2,test flag rotate "  << endl;
+	cout << " 3,test progress percent "  << endl;
+	cout << " 4,test C++ file stream operation "  << endl;
+	cout << " 5,test function array parameter "  << endl;
+	cout << " 6,test the type of 0 "  << endl;
+//	cout << " 7,test FileTransManager. Upload log and txn files "  << endl;
+//	cout << " 8,test FileTransManager. DC Mode ===> Download files "  << endl;
+//	cout << " 9,test FileTransManager. DC Mode ===> Upload log and txn files "  << endl;
+//	cout << " 10, Test download single file." << endl;
+//	cout << " 11, Test download the list of all files." << endl;
+	cout << " 0,Exit." << endl;
+	cout << "=====================================================<< " << endl;
+	cout << "Please select:" << flush;
+
+	cin >> item;
+
+	return item;
+}
+
+void TestINT()
+{
+	int num = 0;
+	unsigned int num0 = 0;
+    cout << "             0-5 is:" << 0-5    << endl;
+    cout << "         int 0-5 is:" << num-5  << endl;
+    cout << "unsigned int 0-5 is:" << num0-5 << endl;
+    testParameterINT( 0 - 5 );
+    testParameterUINT( 0 - 5 );
+}
+
+void testParameterINT( int num )
+{
+	cout << __FUNCTION__ << "param is:" << num << endl;
+}
+
+void testParameterUINT( unsigned int num )
+{
+    cout << __FUNCTION__ << "param is:" << num << endl;
+}
 
 void flagRotate()
 {
@@ -168,34 +222,6 @@ void testFileOpt()
     
     file.close();
     // std::cin >> arr[6];   ///< wait for user confirm
-}
-
-int PrintMenu()
-{
-	unsigned int item = 0;
-
-	cout << endl;
-	cout << endl;
-	cout << "=====================================================>> " << endl;
-	cout << "Pls select your option: " << endl;
-	cout << " 1,test goto lable."      << endl;
-	cout << " 2,test flag rotate "  << endl;
-	cout << " 3,test progress percent "  << endl;
-	cout << " 4,test C++ file stream operation "  << endl;
-	cout << " 5,test function array parameter "  << endl;
-//	cout << " 6,test FileTransManager. Download files "  << endl;
-//	cout << " 7,test FileTransManager. Upload log and txn files "  << endl;
-//	cout << " 8,test FileTransManager. DC Mode ===> Download files "  << endl;
-//	cout << " 9,test FileTransManager. DC Mode ===> Upload log and txn files "  << endl;
-//	cout << " 10, Test download single file." << endl;
-//	cout << " 11, Test download the list of all files." << endl;
-	cout << " 0,Exit." << endl;
-	cout << "=====================================================<< " << endl;
-	cout << "Please select:" << flush;
-
-	cin >> item;
-
-	return item;
 }
 
 int TestArray()
