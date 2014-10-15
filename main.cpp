@@ -2,15 +2,27 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
+#include <cstring>  // for C standard function, eg memcpy()
 #include <unistd.h>
+
+//#define U8 (unsigned char)
+typedef unsigned char u8;
 
 using namespace std;
 
-// haha, I can edit it here !!! reside github.com
-// modify in branch development
+void flagRotate();
+void progressbar();
+void testGotoLable();
+void testFileOpt();
+int PrintMenu();
+int TestArray();
+
+
+int asignArrayParam( char name[5] );
+void progressPercent( unsigned int i );
 
 /**
- * @brief Sam card init
+ * @brief C++ details test.
  * 
  * @param argc parameter counter
  * @param argv parameter valus array point
@@ -22,69 +34,98 @@ using namespace std;
  * @see AdpuCommands_1.0.xls. Page: Demonstration
  *
  * It will do the following process:
- * - Init the Contact Card Reader
- * - Confirm the psam,lsam card(Authenticate) exists.
  * - @see AdpuCommands_1.0.xls. Page: Demonstration
  * - Execute AdpuCommands, eg:
  *     -# SAM_GetAppCode # app code
  *     -# SAM_GetUid     # uid code
  *     -# ...
- *
- *
  * - Will call loadkey();
  *
- * @Todo: U8 terminalKey[24]={0};
+ * @Todo: expend
  * */
- char * aa()
- {
-     static char b;
-     return &b;
- }
+int main( int argc, char **argv )
+{    
+    unsigned int option = 0;
+    while( (option = PrintMenu()) != 0 )
+    {
+        switch( option )
+        {
+            case 1:
+                testGotoLable();
+            break;
+            case 2:
+                flagRotate();
+            break;
+            case 3:
+                progressbar();
+            break;
+            case 4:
+                testFileOpt();
+            break;
+            case 5:
+            	TestArray();
+            break;
+            default:
+            break;
+        }
+    }
+    
+    return 0;
+}
+
+
+void flagRotate()
+{
+    unsigned int cnt = 0;
+    
+    cout << "Pls input the count of rotate: " << flush;
+    cin >> cnt;
+    
+    for(unsigned int i=0; i < cnt; i++ )
+    {
+        printf("\r ---------> |");
+        fflush(stdout);
+        usleep( 200000 );
+        printf("\r ---------> /");
+        fflush(stdout);
+        usleep( 200000 );
+        printf("\r ---------> -");
+        fflush(stdout);
+        usleep( 200000 );
+        printf("\r ---------> \\");
+        fflush(stdout);
+        usleep( 200000 );
+    }
+    printf("\n");
+}
  
- void flagRotate( unsigned int cnt )
- {
-     for(unsigned int i=0; i < cnt; i++ )
-     {
-         printf("\r ---------> |");
-         fflush(stdout);
-         sleep( 1 );
-         printf("\r ---------> /");
-         fflush(stdout);
-         sleep( 1 );
-         printf("\r ---------> -");
-         fflush(stdout);
-         sleep( 1 );
-         printf("\r ---------> \\");
-         fflush(stdout);
-         sleep( 1 );         
-     }
-     printf("\n");
- }
- 
- void progressbar( void )
- {
- 	int i;
-	for (i=0; i<20; i++)
-	{
+void progressbar()
+{
+    for(unsigned int i = 1; i < 101; i++ )
+    {
+    	progressPercent( i );
+    	usleep( 100000 );
+    }
+}
+
+void progressPercent( unsigned int i )
+{
+//    for( i = 1; i < 101; i++ )
+    {
 	    printf("\r");
-		printf("Progress     [%d%%]", (i+1)*5);
+		printf("Progress     [%d%%]", i);
 		//printf("\r");
 		fflush(stdout);
-		sleep(1);
+//		usleep( 150000 );
 	}
-	printf("\n");
- }
+//	printf("\n");
+} 
  
- // test git rebase
- 
- // test module
- void Test_XXX();
- 
- void printwords()
+ void testGotoLable()
  {
-     char *w1 = "haha";
-     char *w2 = "heihei";
-     char *w3 = "hehe";
+     char w1[10] = "haha";
+     char w2[7] = "heihei";
+     char w3[10] = "hehe";
      printf( "%s \n", w1);
      //goto print3;
      
@@ -96,7 +137,7 @@ using namespace std;
      
  }
  
-int main( int argc, char **argv )
+void testFileOpt()
 {
     int arr[8] = {5};
     int iTmp = 0;
@@ -111,29 +152,12 @@ int main( int argc, char **argv )
     std::cout << "ios::beg is " << file.tellg() << std::endl;
     file.read( cTmp, 4 );
     
-    if( (pChar = aa()) != NULL )
-        cout << "Not NULL." << endl;
-    else
-        cout << "NULL" << endl;
-        
     unsigned long ulong = 0x348573;
     unsigned char uchar[20] = {0x55,0x66,0x77};
-    string tmp;
-    //tmp << ulong;
-   // tmp << uchar;
-    cout << "string contact is " << tmp << endl;
-    
-    //file >> iTmp;
-    //std::cout << "the extract is:" << iTmp << std::endl;
-    //std::ios::hex << iTmp << std::endl;
-    //std::cout << "the remain is:" << file.rdbuf();// << std::endl;
     
     std::cout << "file.tellg() is " << file.tellg() << std::endl;
     
-    //file << "insert";
-    
     std::cout << "Hello,world." << std::endl;
-    // arr[7] = 
     //system( "man cmake" );   ///< linux without "pause" command like Windows
     for(int i=0; i<8; i++)
     {
@@ -144,14 +168,50 @@ int main( int argc, char **argv )
     
     file.close();
     // std::cin >> arr[6];   ///< wait for user confirm
-    
-    printwords();
-    
-    //Test_XXX();
-    
-    //progressbar();
-    
-    flagRotate( 4 );
+}
+
+int PrintMenu()
+{
+	unsigned int item = 0;
+
+	cout << endl;
+	cout << endl;
+	cout << "=====================================================>> " << endl;
+	cout << "Pls select your option: " << endl;
+	cout << " 1,test goto lable."      << endl;
+	cout << " 2,test flag rotate "  << endl;
+	cout << " 3,test progress percent "  << endl;
+	cout << " 4,test C++ file stream operation "  << endl;
+	cout << " 5,test function array parameter "  << endl;
+//	cout << " 6,test FileTransManager. Download files "  << endl;
+//	cout << " 7,test FileTransManager. Upload log and txn files "  << endl;
+//	cout << " 8,test FileTransManager. DC Mode ===> Download files "  << endl;
+//	cout << " 9,test FileTransManager. DC Mode ===> Upload log and txn files "  << endl;
+//	cout << " 10, Test download single file." << endl;
+//	cout << " 11, Test download the list of all files." << endl;
+	cout << " 0,Exit." << endl;
+	cout << "=====================================================<< " << endl;
+	cout << "Please select:" << flush;
+
+	cin >> item;
+
+	return item;
+}
+
+int TestArray()
+{
+	char data[5] = {'\0'};
+	asignArrayParam( data );
+
+	cout << "get value:" << data << endl;
+}
+
+int asignArrayParam( char name[5] )
+{
+	char katy[4] = { 'k','a','t','y' };
+    memcpy( name, katy, 4 );
+
+    return 0;
 }
 
 // The brief template
