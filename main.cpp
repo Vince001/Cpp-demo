@@ -18,7 +18,7 @@ int PrintMenu();
 int TestArray();
 
 
-int asignArrayParam( char name[5] );
+int assignArrayParam( char name[5] );
 void progressPercent( unsigned int i );
 
 /**
@@ -98,7 +98,7 @@ void flagRotate()
     }
     printf("\n");
 }
- 
+
 void progressbar()
 {
     for(unsigned int i = 1; i < 101; i++ )
@@ -120,22 +120,22 @@ void progressPercent( unsigned int i )
 	}
 //	printf("\n");
 } 
- 
- void testGotoLable()
- {
-     char w1[10] = "haha";
-     char w2[7] = "heihei";
-     char w3[10] = "hehe";
-     printf( "%s \n", w1);
-     //goto print3;
+
+void testGotoLable()
+{
+    char w1[10] = "haha";
+    char w2[7] = "heihei";
+    char w3[10] = "hehe";
+    printf( "%s \n", w1);
+    //goto print3;
+
+    printf( "%s \n", w3);
      
-     printf( "%s \n", w3);
+print3:
+    printf( "run to here \n");
+    printf( "%s \n", w2);
      
- print3:
-     printf( "run to here \n");
-     printf( "%s \n", w2);   
-     
- }
+}
  
 void testFileOpt()
 {
@@ -201,12 +201,12 @@ int PrintMenu()
 int TestArray()
 {
 	char data[5] = {'\0'};
-	asignArrayParam( data );
+	assignArrayParam( data );
 
 	cout << "get value:" << data << endl;
 }
 
-int asignArrayParam( char name[5] )
+int assignArrayParam( char name[5] )
 {
 	char katy[4] = { 'k','a','t','y' };
     memcpy( name, katy, 4 );
