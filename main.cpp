@@ -1,9 +1,15 @@
 #include <iostream>
+#include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
 #include <string>
 #include <cstring>  // for C standard function, eg memcpy()
 #include <unistd.h>
+#include <cstdio>
+#include <sys/types.h>
+#include <sys/stat.h> // for mkdir()
+#include <dirent.h>
+
 
 //#define U8 (unsigned char)
 typedef unsigned char u8;
@@ -17,6 +23,8 @@ void testFileOpt();
 int PrintMenu();
 int TestArray();
 void TestINT();
+bool TestFileOverlap( const char *filename );
+bool TestDirCreate( const string &path );
 
 
 int assignArrayParam( char name[5] );
@@ -70,6 +78,11 @@ int main( int argc, char **argv )
             break;
             case 6:
             	TestINT();
+            case 7:
+            	TestFileOverlap( "haha.txt" );
+            break;
+            case 8:
+            	TestDirCreate( "/home/vince/tmp/555/sgfs/aa.txt" );
             break;
             default:
             break;
@@ -93,8 +106,8 @@ int PrintMenu()
 	cout << " 4,test C++ file stream operation "  << endl;
 	cout << " 5,test function array parameter "  << endl;
 	cout << " 6,test the type of 0 "  << endl;
-//	cout << " 7,test FileTransManager. Upload log and txn files "  << endl;
-//	cout << " 8,test FileTransManager. DC Mode ===> Download files "  << endl;
+	cout << " 7,test File write overlap "  << endl;
+	cout << " 8,test Create dirs "  << endl;
 //	cout << " 9,test FileTransManager. DC Mode ===> Upload log and txn files "  << endl;
 //	cout << " 10, Test download single file." << endl;
 //	cout << " 11, Test download the list of all files." << endl;
@@ -238,6 +251,60 @@ int assignArrayParam( char name[5] )
     memcpy( name, katy, 4 );
 
     return 0;
+}
+
+bool TestFileOverlap( const char *filename )
+{
+	unsigned char data[20] = { 0xee, 0x43, 0x56, 0x42, 0x43 };
+	FILE *pFile = fopen( filename, "wb" );
+	fseek( pFile, 0, SEEK_SET );
+	fwrite( data, 20, 1, pFile );
+	fclose( pFile );    	
+}
+
+bool TestDirCreate( const string &path )
+{
+	cout << "Goto: " << __FUNCTION__ << endl;
+		//create recursive  
+		// /home/vince/tmp/555/aa.txt
+		// 0    5     1   1
+		//            1   5
+		string dirname = "";
+		size_t pos = 0;
+		//size_t offset = 0;
+		DIR *dir;
+		do
+		{
+			pos = path.find( '/', pos );
+			if( pos != path.npos )  // found '/'
+			{
+				dirname += path.substr( dirname.size(), pos - dirname.size() + 1 );  // "/"
+				pos++;
+				
+				dir = opendir( dirname.c_str() );
+				if( dir == NULL )
+				{
+					if( mkdir( dirname.c_str(), 0755 ) == 0 )
+						cout << "Create dir: " << dirname << " Success" << endl;
+					else
+					{
+						cout << "Create dir: " << dirname << " Fail" << endl;
+						return false;
+					}							
+				}
+				else
+				{
+					closedir( dir );
+				}				
+			}
+		}
+		while( pos != path.npos );	
+		
+		ofstream osr(path.c_str());
+	  if(!osr.is_open())
+	      return false;
+
+	  osr.close();
 }
 
 // The brief template
