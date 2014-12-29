@@ -1,3 +1,10 @@
+/**
+@file main.cpp
+
+This is a C++ demo project for C++ validation.
+
+*/
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,7 +59,7 @@ void testParameterUINT( unsigned int num );
  *     -# ...
  * - Will call loadkey();
  *
- * @Todo: expend
+ * @todo expend
  * */
 int main( int argc, char **argv )
 {    
